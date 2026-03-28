@@ -10,11 +10,43 @@ Make any OpenClaw agent self-improving. No code changes required.
 - **Memory Size Guard** — Prevents silent context truncation from oversized files
 - **Stale Cleanup** — Removes outdated entries automatically
 
-## Install
+## Quick Install
 
-1. Copy `SKILL.md` to your OpenClaw `skills/self-learning/` directory
-2. Add the heartbeat section to your `HEARTBEAT.md`
-3. Create the background cron (see SKILL.md for details)
+```bash
+git clone https://github.com/azai-technologies/self-learning.git
+cd self-learning
+bash setup.sh
+```
+
+Or specify your workspace:
+```bash
+bash setup.sh /path/to/your/workspace
+```
+
+This installs:
+- `skills/self-learning/SKILL.md` — the skill definition
+- `scripts/memory-guard.sh` — auto-trims files over 8KB
+- `scripts/lesson-promoter.sh` — finds patterns to promote to rules
+- `scripts/daily-memory.sh` — creates daily memory log files
+- `scripts/stale-cleanup.sh` — checks memory health + duplicates
+- Adds self-learning section to your `HEARTBEAT.md`
+
+## What's Included
+
+```
+self-learning/
+├── setup.sh                    # One-command installer
+├── SKILL.md                    # Skill definition for OpenClaw
+├── scripts/
+│   ├── memory-guard.sh         # Auto-trim oversized memory files
+│   ├── lesson-promoter.sh      # Find recurring lesson patterns
+│   ├── daily-memory.sh         # Create daily memory log
+│   └── stale-cleanup.sh        # Memory health check + dedup
+├── templates/
+│   └── heartbeat-addition.md   # Heartbeat section to append
+├── LICENSE
+└── README.md
+```
 
 ## How It Compares to Hermes Agent
 
